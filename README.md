@@ -35,3 +35,5 @@ For GitHub Pages, publish the repository root. For a Render Static Site, use no 
 ## Interaction and accessibility
 
 Project cards open native dialogs. Career chapters support arrow keys, Home, and End. Project filters expose their pressed state and announce the visible count. The valuation control switches between the three original DCF scenarios. Motion respects reduced-motion preferences, and the site retains standard keyboard navigation.
+
+
