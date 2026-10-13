@@ -90,8 +90,19 @@ function openCase(id, trigger = null) {
   dialog.querySelector('.dialog-close').focus({preventScroll:true});
 }
 document.addEventListener('click', event => {
-  const button = event.target.closest('[data-case]');
-  if (button) openCase(button.dataset.case, button);
+  if (event.target.closest('[data-scenario]')) return;
+  const trigger = event.target.closest('[data-case]');
+  if (trigger) openCase(trigger.dataset.case, trigger);
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    if (event.target.closest('[data-scenario]')) return;
+    const card = event.target.closest('.project-card[data-case]');
+    if (card && event.target === card) {
+      event.preventDefault();
+      openCase(card.dataset.case, card);
+    }
+  }
 });
 dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
